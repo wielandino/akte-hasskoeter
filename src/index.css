@@ -1,0 +1,100 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Cinzel Decorative', serif;
+  --font-body: 'Cormorant Garamond', serif;
+  --font-report: 'Special Elite', monospace;
+
+  --color-void: #0b0a10;
+  --color-abyss: #14121a;
+  --color-charcoal: #1e1b25;
+  --color-parchment: #ece3d0;
+  --color-parchment-dim: #cabfa5;
+  --color-blood: #7a1224;
+  --color-blood-bright: #a91d33;
+  --color-brass: #b8873f;
+  --color-brass-bright: #d9a94f;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-void);
+    color: var(--color-parchment);
+    font-family: var(--font-body);
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: 0.03em;
+  }
+}
+
+:root {
+  --a11y-font-size: 100%;
+  --a11y-font-weight: 400;
+  --a11y-font-family: var(--font-body);
+}
+
+html[data-a11y-active] {
+  font-size: var(--a11y-font-size);
+}
+
+html[data-a11y-active] :is(p, span, li, h1, h2, h3, h4, h5, h6, blockquote, td, th, dt, dd, label) {
+  font-family: var(--a11y-font-family) !important;
+  font-weight: var(--a11y-font-weight) !important;
+}
+
+html[data-reading-mode] {
+  font-size: 118%;
+}
+
+html[data-reading-mode] :is(p, span, li, h1, h2, h3, h4, h5, h6, blockquote, td, th, dt, dd, label) {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-weight: 400 !important;
+}
+
+@layer utilities {
+  .bg-vignette {
+    background-image: radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      transparent 55%,
+      rgba(0, 0, 0, 0.55) 100%
+    );
+  }
+
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+
+  .text-shadow-blood {
+    text-shadow: 0 0 24px rgba(232, 200, 119, 0.5);
+  }
+
+  .stamp {
+    font-family: var(--font-report);
+    color: var(--color-blood-bright);
+    border: 2px solid currentColor;
+    border-radius: 3px;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .bg-corkgrid {
+    background-image: radial-gradient(circle, rgba(184, 135, 63, 0.16) 1px, transparent 1px);
+    background-size: 26px 26px;
+    mask-image: radial-gradient(ellipse at center, black 0%, black 55%, transparent 100%);
+  }
+}
